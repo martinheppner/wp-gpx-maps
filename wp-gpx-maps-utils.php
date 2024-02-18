@@ -388,8 +388,14 @@ function wpgpxmaps_parseXml( $filePath, $gpxOffset, $distancetype ) {
 			$points->maxEle      = max( $_ele );
 			$points->minEle      = min( $_ele );
 			$points->totalLength = max( $_dist );
-			$points->maxTime     = max( $_time );
-			$points->minTime     = min( $_time );
+			if ( !empty($_time) ) {
+				$points->maxTime     = max( $_time );
+				$points->minTime     = min( $_time );
+			}
+			else {
+				$points->maxTime     = 0;
+				$points->minTime     = 0;
+			}
 
 			/* Calculating Average Speed */
 			$_speed           = array_filter( $points->speed );
